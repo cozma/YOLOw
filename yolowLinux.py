@@ -37,7 +37,7 @@ def getBattery():
     choose = True
     status = None
     output = None
-    compare = "45.0%"
+    compare = "10.0%"
     print compare
     
     while True:
