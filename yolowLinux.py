@@ -55,9 +55,6 @@ def getBattery():
             batt = open('/sys/class/power_supply/BAT0/energy_now','r') ##opens the directory containing pi serial
             for line in batt:      ##in the file
                 num = int(line)
-                 
-                print batteryPercent()
-                print len(batteryPercent())
                 output = batteryPercent()
                 print output
                 if output == compare:
