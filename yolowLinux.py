@@ -40,7 +40,7 @@ def getBattery():
     setLimit = input("Battery % to get warnings at (1-100) ")
     
     compare = str(setLimit) + ".0%"
-    print "You have set your battery warning percent to " + compare
+    print "You have set your battery warning percentage to " + compare
     
     while True:
         time.sleep(3)
@@ -48,7 +48,7 @@ def getBattery():
         
         for search in charge:
             status = search
-            print status
+            ##print status
             choose = (status[:-1] == 'Charging')
             break
         if not choose:
@@ -56,11 +56,17 @@ def getBattery():
             for line in batt:      ##in the file
                 num = int(line)
                 output = batteryPercent()
-                print output
+                
+                sys.stdout.write(status)
+        
+               
+                print ' '
+                print "Current battery level: " + output
+                
                 if output == compare:
-                    print "dying!"
+                    print "Yo!"
                     yo("32e37dc1-3b51-13c1-13ab-e64da3a8dade",person)
-                    ##sys.exit()
+                    
                     break
                         
             batt.close()
