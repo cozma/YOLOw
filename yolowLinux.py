@@ -16,13 +16,13 @@ def batteryPercent():
     fullBatt = open('/sys/class/power_supply/BAT0/energy_full','r')
     for keep in fullBatt:
         full = float(keep)
-       ## print full
+        
     currBatt = open('/sys/class/power_supply/BAT0/energy_now','r')
     for current in currBatt:
         curr = float(current)
-        ##print curr
+         
     battPercent = ("%.1f" % ((curr/full)*100))
-    ##print battPercent
+     
     stringPercent = str(battPercent)
     finalPercent = (stringPercent + "%")
     return finalPercent
@@ -37,8 +37,10 @@ def getBattery():
     choose = True
     status = None
     output = None
-    compare = "10.0%"
-    print compare
+    setLimit = input("Battery % to get warnings at (1-100) ")
+    
+    compare = str(setLimit) + ".0%"
+    print "You have set your battery warning percent to " + compare
     
     while True:
         time.sleep(3)
@@ -53,14 +55,14 @@ def getBattery():
             batt = open('/sys/class/power_supply/BAT0/energy_now','r') ##opens the directory containing pi serial
             for line in batt:      ##in the file
                 num = int(line)
-                ##print num
+                 
                 print batteryPercent()
                 print len(batteryPercent())
                 output = batteryPercent()
                 print output
                 if output == compare:
                     print "dying!"
-                    yo("c5a366e9-9a91-e7ba-1c1f-815bb67c8c74",person)
+                    yo("32e37dc1-3b51-13c1-13ab-e64da3a8dade",person)
                     ##sys.exit()
                     break
                         
