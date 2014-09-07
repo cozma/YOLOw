@@ -9,7 +9,9 @@ from ctypes import wintypes
 
 
 token = "32e37dc1-3b51-13c1-13ab-e64da3a8dade"
-username = raw_input("Username: ")
+username = raw_input("Enter YO! Username: ")
+batteryLvl = input("Battery % to get updates at (1-100): ")
+updateInterval = input("Check Time Interval (minutes) : ")
 
 
 class SYSTEM_POWER_STATUS(ctypes.Structure):
@@ -40,9 +42,11 @@ def chargingStatusLoop():
         status = SYSTEM_POWER_STATUS()
         if not GetSystemPowerStatus(ctypes.pointer(status)):
             raise ctypes.WinError()
-        time.sleep(1)
-        if status.BatteryLifePercent < 55 and not status.ExternalPower:
+        time.sleep(updateInterval)
+        if status.BatteryLifePercent < batteryLvl and not status.ExternalPower:
             yo(token, username)
+            time.sleep(1)
+            print 'YO Sent!'
         elif status.ExternalPower == False:
             sys.stdout.write("Discharging.")
             time.sleep(1)
